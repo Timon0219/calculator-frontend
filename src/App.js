@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, Button, Container } from '@material-ui/core';
 import Login from './components/Login';
@@ -7,13 +7,15 @@ import Calculator from './components/Calculator';
 import Records from './components/Records';
 
 function App() {
-  const isAuthenticated = !!localStorage.getItem('token');
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     window.location.reload();
   };
-
+  useEffect(() => {
+    setIsAuthenticated(!!localStorage.getItem('token'))
+  }, [])
   return (
     <Router>
       <AppBar position="static">
@@ -37,7 +39,7 @@ function App() {
       </AppBar>
       <Container style={{ marginTop: '20px' }}>
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/calculator" element={<PrivateRoute component={Calculator} />} />
           <Route path="/records" element={<PrivateRoute component={Records} />} />

@@ -1,5 +1,5 @@
 import axios from 'axios';
-const REACT_APP_API_URL='http://localhost:3000/api/v1'
+const REACT_APP_API_URL='http://154.38.162.163:3003/api/v1'
 
 const API_URL = process.env.REACT_APP_API_URL || REACT_APP_API_URL;
 

@@ -3,7 +3,7 @@ import { TextField, Button, Typography, Container } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom'; // Updated import
 import { login } from '../services/api';
 
-function Login() {
+function Login({setIsAuthenticated}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate(); // Using useNavigate instead of useHistory
@@ -15,6 +15,7 @@ function Login() {
       console.log(response.data.token)
       localStorage.setItem('token', response.data.token);
       navigate('/calculator'); // Using navigate instead of history.push
+      setIsAuthenticated(true)
     } catch (error) {
       console.error('Login failed', error);
     }
