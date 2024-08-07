@@ -1,5 +1,5 @@
 import axios from 'axios';
-const REACT_APP_API_URL='https://calculator-backend-b3nm.onrender.com:10000/api/v1'
+const REACT_APP_API_URL='http://localhost:3000/api/v1'
 
 const API_URL = process.env.REACT_APP_API_URL || REACT_APP_API_URL;
 
